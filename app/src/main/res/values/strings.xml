@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ImgUrDemo</string>
+    <string name="get">Get</string>
+    <string name="no_image_available">No Image available</string>
+    <string name="description">Type your Description here...</string>
+    <string name="search">Search</string>
+    <string name="image_detail">Image Detail</string>
+    <string name="submit">Submit</string>
+    <string name="no_description">Please Add Description...</string>
+    <string name="no_internet">No Internet Connected !</string>
+</resources>
