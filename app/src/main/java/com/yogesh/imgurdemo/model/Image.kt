@@ -9,5 +9,6 @@ data class Image(
     val id: String,
     var title: String,
     val description: String?,
-    val link: String
+    val link: String,
+    val edited: Boolean
 )

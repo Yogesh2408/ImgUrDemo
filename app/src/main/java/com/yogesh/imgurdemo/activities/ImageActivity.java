@@ -67,7 +67,7 @@ public class ImageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!descEditText.getText().toString().trim().isEmpty()) {
-                    viewModel.setDescription(viewModel.getImgId().getValue()
+                    viewModel.setDescription(getIntent().getStringExtra(IMAGE_ID)
                             , descEditText.getText().toString().trim());
                 } else {
                     Utils.showToast(ImageActivity.this, getString(R.string.no_description));
@@ -87,6 +87,10 @@ public class ImageActivity extends AppCompatActivity {
 
                         if (getSupportActionBar() != null) {
                             getSupportActionBar().setTitle(image.getTitle());
+                        }
+                        if (image.getEdited()) {
+                            descEditText.setText(image.getDescription());
+                            descEditText.setSelection(image.getDescription().length());
                         }
                         Glide.with(ImageActivity.this)
                                 .setDefaultRequestOptions(new RequestOptions().fitCenter())

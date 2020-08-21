@@ -30,8 +30,8 @@ class MainActivityViewModel() : ViewModel() {
         return repository.getAllImagesRepo(imgurRestApi, imageString)
     }
 
-    fun getImages(): LiveData<List<Image>> {
-        return repository.getImagesFromDB()
+    fun getImages(title: String): LiveData<List<Image>> {
+        return repository.getImagesFromDB(title)
     }
 
     fun getImageDetails(imgId: String?): LiveData<Image> {

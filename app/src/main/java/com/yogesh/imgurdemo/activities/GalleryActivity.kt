@@ -81,12 +81,13 @@ class GalleryActivity : AppCompatActivity(), KodeinAware,
      * Gets List Image.
      */
     private fun getObservableImageList() {
-        viewModel.getImages().observe(this, Observer { imagesList ->
-            Log.e(tag, imagesList.toString())
-            mRecyclerViewAdapter.setUserList(imagesList)
-            mProgressBar.visibility = View.GONE
+        viewModel.getImages(searchImageEditText.text.toString().trim())
+            .observe(this, Observer { imagesList ->
+                Log.e(tag, imagesList.toString())
+                mRecyclerViewAdapter.setUserList(imagesList)
+                mProgressBar.visibility = View.GONE
 
-        })
+            })
     }
 
     override fun onItemClickListener(position: Int, imageId: String) {
@@ -97,6 +98,7 @@ class GalleryActivity : AppCompatActivity(), KodeinAware,
         if (Utils.isNetworkConnected(this)) {
             mProgressBar.visibility = View.VISIBLE
             viewModel.getImagesFromViewModel(restApi, searchImageEditText.text.toString().trim())
+            getObservableImageList()
         } else {
             Utils.showToast(this, getString(R.string.no_internet))
         }

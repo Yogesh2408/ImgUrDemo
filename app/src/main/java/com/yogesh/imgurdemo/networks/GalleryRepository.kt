@@ -4,12 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yogesh.imgurdemo.ImgurApplication
+import com.yogesh.imgurdemo.database.ImageDao
 import com.yogesh.imgurdemo.model.Image
 import com.yogesh.imgurdemo.model.ImageResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import yogesh.com.shaadiassignment.DB.ImageDao
 
 class GalleryRepository() {
 
@@ -57,8 +57,8 @@ class GalleryRepository() {
         return ImgurApplication.database!!.imageDao()
     }
 
-    fun getImagesFromDB(): LiveData<List<Image>> {
-        return getDao().getImages()
+    fun getImagesFromDB(title: String): LiveData<List<Image>> {
+        return getDao().getImages(title)
     }
 
     fun getImageDetailsFromDB(imgId: String?): LiveData<Image> {
@@ -66,7 +66,9 @@ class GalleryRepository() {
     }
 
     fun setDescriptionFromDB(imgId: String, desc: String) {
-        getDao().setImageDescription(imgId, desc)
+        Thread(Runnable {
+            getDao().setImageDescription(imgId, desc, true)
+        }).start()
     }
 }
 

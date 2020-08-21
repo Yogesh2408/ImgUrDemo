@@ -1,4 +1,4 @@
-package com.example.assignment.network
+package com.yogesh.imgurdemo.networks
 
 import java.io.IOException
 
